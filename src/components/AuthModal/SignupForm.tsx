@@ -4,6 +4,7 @@ import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import { DialogFooter } from "../ui/dialog"
 
+
 interface SignupFormProps {
   onSubmit: (data: { fullName: string, username: string, password: string }) => void
 }

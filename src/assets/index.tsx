@@ -1,4 +1,4 @@
 import featureImage from './jakob-owens-CiUR8zISX60-unsplash.jpg'
-
-export {featureImage} 
+import fallback from './fallback.jpg'
+export {featureImage, fallback} 
 

@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import authReducer from './authSlice'
-
-// Create and export the store
+import movieReducer from './movieSlice'
+import searchReducer from './searchSlice'
 export const store = configureStore({
   reducer: {
     auth: authReducer,
+    movies: movieReducer,
+    search: searchReducer
   },
 })
 

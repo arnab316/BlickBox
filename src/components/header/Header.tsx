@@ -1,14 +1,15 @@
-// src/components/Header/Header.tsx
 import { BellRing, Search, LogOut } from 'lucide-react'
 import { Button } from "../ui/button"
-
+import MovieSearch from "../MovieSearch/MovieSearch"
 interface HeaderProps {
   isLoggedIn: boolean
   onLoginClick: () => void
   onLogout: () => void
+  onSearch: (query: string) => void;
+  searchResults: Movie[]
 }
 
-const Header = ({ isLoggedIn, onLoginClick, onLogout }: HeaderProps) => (
+const Header = ({ isLoggedIn, onLoginClick, onLogout, onSearch, searchResults }: HeaderProps) => (
   <header className="flex items-center justify-between p-4 bg-black/50 backdrop-blur-sm fixed top-0 left-0 right-0 z-10">
     <div className="flex items-center space-x-4">
       <h1 className="text-2xl font-bold">Blickbox</h1>
@@ -22,7 +23,8 @@ const Header = ({ isLoggedIn, onLoginClick, onLogout }: HeaderProps) => (
       </nav>
     </div>
     <div className="flex items-center space-x-4">
-      <Search className="w-5 h-5" />
+      {/* <Search className="w-5 h-5" /> */}
+      <MovieSearch onSearch={onSearch} searchResults={searchResults} />
       <BellRing className="w-5 h-5" />
       {isLoggedIn ? (
         <div className="flex items-center space-x-2">
