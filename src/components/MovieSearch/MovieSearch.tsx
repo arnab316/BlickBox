@@ -10,28 +10,27 @@ import {fallback} from "../../assets";
 interface Movie {
   title: string
   image: string,
-  posterUrl: string
+  posterUrl?: string
+}
+interface MovieSearchProps {
+  onSearch: (query: string) => void;
+  searchResults: Movie[];
 }
 
- function MovieSearch() {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const MovieSearch: React.FC<MovieSearchProps> = ({ onSearch, searchResults }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const searchRef = useRef<HTMLDivElement>(null)
 
   const dispatch = useDispatch()
   const { results, loading, error } = useSelector((state: RootState) => state.search) // Select from store
-  console.log('Results in component:', results);
-  console.log(results.length+ "test")
-  if (Array.isArray(results)) {
-    console.log('Number of results:', results.length);
-  } else {
-    console.log('Results is not an array:', results);
-  }
+  
   //Debounce timeout
   const debouncedSearch = useRef(
     debounce((query: string) => {
       if (query.length > 2) {
-        console.log('Dispatching search for:', query); 
+        // console.log('Dispatching search for:', query); 
         dispatch(searchMovies(query));
       }
     }, 300) //the delay as needed

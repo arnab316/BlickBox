@@ -6,7 +6,6 @@ export const searchMovies = createAsyncThunk(
   'movies/searchMovies',
   async (query: string) => {
     const response = await axios.get(`http://localhost:4002/api/v1/search/${query}`);
-    // console.log('Response in redux:', response.data);
     return response.data; 
 
   }

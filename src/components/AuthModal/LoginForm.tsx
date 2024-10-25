@@ -3,10 +3,6 @@ import { Label } from "../ui/label"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import { DialogFooter } from "../ui/dialog"
-interface ErrorResponse {
-  message: string;
-}
-
 interface LoginFormProps {
   onSubmit: (data: { username: string, password: string }) => void
 }
@@ -18,19 +14,18 @@ const LoginForm = ({ onSubmit }: LoginFormProps) => {
 
   const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault()
-    onSubmit({ username, password })
+    setErrorMessage('');
+    // onSubmit({ username, password })
     try {
-      // Call the onSubmit function and handle login
       await onSubmit({ username, password })
-      setErrorMessage('') // Clear any previous error message
+      // setErrorMessage('') 
     } catch (error) {
-      // Set the error message from the backend response
       if (error instanceof Error) {
-        const axiosError = error as { response?: { data: ErrorResponse } };
-        setErrorMessage(axiosError.response.data.message || 'Invalid credentials');
+        setErrorMessage(error.message);
       } else {
         setErrorMessage('An unexpected error occurred');
       }
+      
     }
 
   }
